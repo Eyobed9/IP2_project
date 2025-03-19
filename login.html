@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Login Page</title>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+        height: 100vh;
+      }
+      .login-section {
+        display: flex;
+        height: 80%;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+      #Doctor {
+        display: none;
+      }
+      #Patient {
+        display: block;
+      }
+      .login-container {
+        background: rgb(0, 21, 53);
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+      .login-container h2 {
+        margin-bottom: 20px;
+        color: whitesmoke;
+      }
+      .login-container input[type="text"],
+      .login-container input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      .login-container input[type="submit"] {
+        background: #007bff;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 20px;
+        transition: background 0.3s;
+      }
+      .login-container input[type="submit"]:hover {
+        background: #0056b3;
+      }
+
+      .should-be {
+        background: rgb(98, 0, 98);
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 20px;
+        transition: background 0.3s;
+      }
+    </style>
+  </head>
+  <body id="home">
+    <header class="navbar">
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/logo.png" alt="Science and Technology Logo" />
+        </a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html#home" class="active">Home</a></li>
+          <li><a href="index.html#about">About-Us</a></li>
+          <li><a href="index.html#services">Service</a></li>
+          <li><a href="login.html">Patient-Detail</a></li>
+          <li><a href="contact-us.html" class="contact-btn">Contact-Us</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section class="login-section">
+      <button id="toggleButton" class="button">Login as a Doctor</button>
+      <div class="container">
+        <div class="login-container" id="Doctor">
+          <h2>Login as a Doctor</h2>
+          <form action="#" method="get">
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+            />
+
+            <input type="submit" value="Login" />
+            <a href="doctor.html"
+              ><input
+                class="should-be"
+                type="button"
+                value="Doctor's Information"
+            /></a>
+          </form>
+        </div>
+        <div class="login-container" id="Patient">
+          <h2>Login as a Patient</h2>
+          <form action="#" method="post">
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+            />
+            <input type="submit" value="Login" />
+            <a href="patient.html"
+              ><input
+                class="should-be"
+                type="button"
+                value="Patient's Information"
+            /></a>
+          </form>
+        </div>
+      </div>
+    </section>
+    <script src="js/login.js" defer></script>
+  </body>
+</html>
