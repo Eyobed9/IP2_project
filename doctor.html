@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AASTU Clinic</title>
+    <link rel="shortcut icon" href="images/logo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      .patient-card {
+        width: 600px;
+        background-color: #e6eefc;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+
+      .header {
+        background-color: #000;
+        color: #fff;
+        padding: 15px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .patient-info {
+        display: flex;
+        padding: 20px;
+        gap: 20px;
+      }
+
+      .patient-image {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+
+      .patient-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .details {
+        flex: 1;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .details div {
+        flex: 1 1 45%;
+        font-size: 14px;
+      }
+
+      .details div span {
+        font-weight: bold;
+      }
+
+      .contact {
+        text-align: center;
+        margin-bottom: 15px;
+      }
+
+      .contact h3 {
+        margin: 5px 0;
+        font-size: 16px;
+      }
+
+      .contact p {
+        margin: 0;
+        font-size: 14px;
+        color: #555;
+      }
+
+      .history {
+        padding: 20px;
+      }
+
+      .history h3 {
+        margin-bottom: 10px;
+        font-size: 16px;
+        text-align: center;
+      }
+
+      .history-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+
+      .history-table th,
+      .history-table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+      }
+
+      .history-table th {
+        background-color: #f0f4fb;
+        font-weight: bold;
+      }
+
+      .high {
+        color: red;
+      }
+
+      .medium {
+        color: orange;
+      }
+
+      .low {
+        color: green;
+      }
+
+      .under-treatment {
+        color: red;
+      }
+
+      .cured {
+        color: green;
+      }
+
+      .dashboard {
+        display: grid;
+        grid-template-columns: auto auto;
+        flex-wrap: wrap;
+        gap: 40px;
+        padding: 50px;
+        justify-content: center;
+        background-color: #f0f4fb;
+        border-radius: 20px;
+      }
+
+      .card {
+        width: 250px;
+        background-color: #e0e0e0;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      .card h4 {
+        margin: 10px 0;
+        font-size: 16px;
+        color: #333;
+      }
+
+      .card p {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0;
+      }
+      .card img {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+        border-radius: 0%;
+      }
+
+      .top-treatments {
+        text-align: left;
+        color: #333;
+      }
+
+      .treatment-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 5px 0;
+        font-size: 14px;
+      }
+
+      .treatment-item span {
+        display: inline-block;
+      }
+
+      .dot {
+        height: 10px;
+        width: 10px;
+        border-radius: 50%;
+        display: inline-block;
+      }
+
+      .red {
+        background-color: red;
+      }
+
+      .green {
+        background-color: green;
+      }
+
+      .table-container {
+        width: 100%;
+        color: #333;
+        background-color: #f0f4fb;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        border-radius: 20px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 15px;
+        text-align: left;
+      }
+      tr:nth-child(even),
+      tr:nth-child(odd) {
+        background-color: #e0e0e0;
+      }
+      tr input {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      .table-icons {
+        display: flex;
+        justify-content: space-evenly;
+      }
+      .table-icons button,
+      #add-patient-btn {
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+      }
+      .table-icons button img,
+      .table-icons a img,
+      button img {
+        width: 20px;
+        height: 20px;
+      }
+
+      /* Modal styles */
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0); /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+      }
+
+      .modal-content {
+        color: #fff;
+
+        background-color: rgb(0, 21, 53);
+        margin: 15% auto; /* 15% from the top and centered  */
+        padding: 30px;
+        border: 1px solid #888;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 600px;
+      }
+      .g1 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+      /* Close Button */
+      .close {
+        display: block;
+        text-align: right;
+        font-size: 18px;
+        cursor: pointer;
+        color: #fff;
+        margin-bottom: 10px;
+      }
+
+      .close:hover {
+        color: #ff6b6b;
+      }
+
+      /* Heading */
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 20px;
+        color: #f0f0f0;
+      }
+
+      /* Form Styling */
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      label {
+        font-size: 14px;
+        color: #ccc;
+      }
+
+      form input {
+        padding: 10px;
+        border: none;
+        width: 97%;
+        border-radius: 4px;
+        font-size: 14px;
+        color: #000;
+      }
+      .wrapper input {
+        width: 90%;
+      }
+
+      button[type="submit"] {
+        background-color: #007acc;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #005fa3;
+      }
+    </style>
+  </head>
+  <body id="home">
+    <header class="navbar">
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/logo.png" alt="Science and Technology Logo" />
+        </a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html#home" class="active">Home</a></li>
+          <li><a href="index.html#about">About-Us</a></li>
+          <li><a href="index.html#services">Service</a></li>
+          <li><a href="login.html">Patient-Detail</a></li>
+          <li><a href="contact-us.html" class="contact-btn">Contact-Us</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section id="dashboard">
+      <h1>Welcome back, Dr. Abdi!</h1>
+      <div class="dashboard">
+        <div class="card">
+          <img
+            src="images/icons/graph-svgrepo-com.svg"
+            alt="Total Graph Icon"
+          />
+          <h4>Total Patients</h4>
+          <p>500</p>
+        </div>
+        <div class="card">
+          <img
+            src="images/icons/people-user-svgrepo-com.svg"
+            alt="Total Appointment Icon"
+          />
+          <h4>Total Appointments</h4>
+          <p>12</p>
+        </div>
+        <div class="card">
+          <img
+            src="images/icons/star-sharp-svgrepo-com.svg"
+            alt="Satisfaction Star Icon"
+          />
+          <h4>Patient Satisfaction Score</h4>
+          <p>85%</p>
+        </div>
+        <div class="card top-treatments">
+          <h4>Top Treatments</h4>
+          <div class="treatment-item">
+            <span class="dot red"></span> <span>Common Cold</span>
+            <span>40.6%</span>
+          </div>
+          <div class="treatment-item">
+            <span class="dot red"></span> <span>Asthma</span> <span>32%</span>
+          </div>
+          <div class="treatment-item">
+            <span class="dot green"></span> <span>Food Poison</span>
+            <span>24%</span>
+          </div>
+          <div class="treatment-item">
+            <span class="dot green"></span> <span>Ameba</span> <span>12%</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="Patient-Detail">
+      <h2>Patient's Details</h2>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Patient Name</th>
+              <th>Gender</th>
+              <th>Age</th>
+              <th>Date of Visit</th>
+              <th>Diagnosis</th>
+              <th>Severity</th>
+              <th>Total Visits</th>
+              <th>Status</th>
+              <th>
+                <input type="text" placeholder="Search by Name" /><button
+                  id="add-patient-btn"
+                  class="button"
+                >
+                  <img
+                    src="images/icons/person-add-svgrepo-com.svg"
+                    alt="Add"
+                  />
+                </button>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Dagmawi</td>
+              <td>Male</td>
+              <td>21</td>
+              <td>March 9, 2022</td>
+              <td>Common Cold</td>
+              <td class="high">High</td>
+              <td>6</td>
+              <td class="under-treatment">Under Treatment</td>
+              <td class="table-icons">
+                <button>
+                  <img src="images/icons/edit-3-svgrepo-com.svg" alt="Edit" />
+                </button>
+                <button>
+                  <img
+                    src="images/icons/delete-2-svgrepo-com.svg"
+                    alt="Delete"
+                  />
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>Ellyana</td>
+              <td>Female</td>
+              <td>20</td>
+              <td>January 21, 2021</td>
+              <td>Asthma</td>
+              <td class="medium">Medium</td>
+              <td>4</td>
+              <td class="cured">Cured</td>
+              <td class="table-icons">
+                <button>
+                  <img src="images/icons/edit-3-svgrepo-com.svg" alt="Edit" />
+                </button>
+                <button>
+                  <img
+                    src="images/icons/delete-2-svgrepo-com.svg"
+                    alt="Delete"
+                  />
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>Abebe</td>
+              <td>Male</td>
+              <td>19</td>
+              <td>February 14, 2024</td>
+              <td>Hypertension</td>
+              <td class="low">Low</td>
+              <td>2</td>
+              <td class="cured">Cured</td>
+              <td class="table-icons">
+                <button href="#">
+                  <img src="images/icons/edit-3-svgrepo-com.svg" alt="Edit" />
+                </button>
+                <button href="#">
+                  <img
+                    src="images/icons/delete-2-svgrepo-com.svg"
+                    alt="Delete"
+                  />
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>Estifanos</td>
+              <td>Male</td>
+              <td>22</td>
+              <td>August 23, 2024</td>
+              <td>Food Poison</td>
+              <td class="medium">Medium</td>
+              <td>3</td>
+              <td class="cured">Cured</td>
+              <td class="table-icons">
+                <button href="#">
+                  <img src="images/icons/edit-3-svgrepo-com.svg" alt="Edit" />
+                </button>
+                <button href="#">
+                  <img
+                    src="images/icons/delete-2-svgrepo-com.svg"
+                    alt="Delete"
+                  />
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Modal for editing patient details -->
+    <div id="editModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Edit Patient Details</h2>
+        <form id="editForm">
+          <label for="patientName">Patient Name:</label>
+          <input type="text" id="patientName" name="patientName" required />
+          <br />
+          <div class="g1">
+            <div class="wrapper">
+              <label for="gender">Gender:</label>
+              <input type="text" id="gender" name="gender" required />
+            </div>
+            <div class="wrapper">
+              <label for="age">Age:</label>
+              <input type="number" id="age" name="age" required />
+            </div>
+            <div class="wrapper">
+              <label for="dateOfVisit">Date of Visit:</label>
+              <input type="date" id="dateOfVisit" name="dateOfVisit" required />
+            </div>
+          </div>
+
+          <label for="diagnosis">Diagnosis:</label>
+          <input type="text" id="diagnosis" name="diagnosis" required />
+          <label for="severity">Severity:</label>
+          <input type="text" id="severity" name="severity" required />
+          <label for="totalVisits">Total Visits:</label>
+          <input type="number" id="totalVisits" name="totalVisits" required />
+          <label for="status">Status:</label>
+          <input type="text" id="status" name="status" required />
+          <button type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="js/doctor.js"></script>
+  </body>
+</html>
