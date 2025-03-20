@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Contact Us</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .new-container {
+        background: rgb(0, 21, 53);
+        padding: 40px 60px;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        width: 600px;
+        text-align: center;
+      }
+      .new-container h1 {
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: whitesmoke;
+      }
+      .new-container input,
+      .new-container textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+      .new-container input[type="submit"] {
+        background: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+      .new-container input[type="submit"]:hover {
+        background: #0056b3;
+      }
+    </style>
+  </head>
+  <body id="home">
+    <header class="navbar">
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/logo.png" alt="Science and Technology Logo" />
+        </a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html#home" class="active">Home</a></li>
+          <li><a href="index.html#about">About-Us</a></li>
+          <li><a href="index.html#services">Service</a></li>
+          <li><a href="login.html">Patient-Detail</a></li>
+          <li><a href="contact-us.html" class="contact-btn">Contact-Us</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="new-container">
+      <h1>Contact Us</h1>
+      <form action="#" method="post">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea
+          name="message"
+          rows="5"
+          placeholder="Your Message"
+          required
+        ></textarea>
+        <input type="submit" value="Send Message" />
+      </form>
+    </div>
+  </body>
+</html>
