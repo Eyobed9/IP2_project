@@ -102,3 +102,12 @@ Contributions are welcome! Please follow these steps:
 ## License
 
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+
+## Contributors 
+ Name           |          ID      |
+| ------------- | ---------------- |
+| Eyobed Demissie | ETS0595/14 |
+| Dawit Mandefro | ETS0378/15 |
+| Dawit Tadele | ETS0375/15 |
+| Dureti Hailu | ETS0400/15 |
+| Daniel Kebede | ETS0367/15 |

@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         !empty($data['date']) || !empty($data['physician'])
         || !empty($data['time'])
     ) {
-        $data = htmlspecialchars($data['data']);
+        $date = htmlspecialchars($data['date']);
         $physician = htmlspecialchars($data['physician']);
         $time = htmlspecialchars($data['time']);
 
@@ -43,7 +43,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $getStmt->execute();
         $getStmt->store_result();
 
+        if($getStmt->num_rows > 0) {
+            $getStmt->bind_result($patientID);
+            $getStmt->fetch();
+        }
 
+        $insertStmt = $conn->prepare("INSERT INTO appointment (AppointmentDate, StaffID, patientID, AppointmentTime) VALUES (?, ?, ?, ?)");
+        $insertStmt->bind_param("siis", )
 
         if ($addStmt->execute()) {
             # send to the frontend
