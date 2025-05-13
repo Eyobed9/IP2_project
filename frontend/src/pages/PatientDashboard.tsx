@@ -1,32 +1,31 @@
-import {MedicalCard} from "@/components/Dashboard/MedicalCard"
-import MyMedicalCard from "@/components/Dashboard/MyMedicalCard"
 import { useEffect, useState } from "react";
-
+import { MedicalCard } from "@/components/Dashboard/MedicalCard";
+import MyMedicalCard from "@/components/Dashboard/MyMedicalCard";
+import AppointmentCard from "@/components/Dashboard/AppointmentCard";
 
 const PatientDashboard = () => {
-  const [available, setAvailable] = useState(false);
-  useEffect(()=>{
-    fetch("http://localhost:8080/ip2_project/aastu_clinic/backend/API/checkCard.php", {
-      method: 'GET', credentials: "include"
-    })
-    .then((res)=>res.json())
-    .then((data=> {
-      if(data.success) {
-        setAvailable(true);
-      }
-      else {
-        setAvailable(false);
-      }
-    }))
-  }, []);
+	const [available, setAvailable] = useState(false);
 
-  return (
-    
-	<div>
-    {available ?
-    <MyMedicalCard/> :
-    <MedicalCard/>}</div>
-  )
-}
+	useEffect(() => {
+		fetch(
+			"http://localhost:8080/ip2_project/aastu_clinic/backend/API/checkCard.php",
+			{
+				method: "GET",
+				credentials: "include",
+			}
+		)
+			.then((res) => res.json())
+			.then((data) => {
+				setAvailable(data.success);
+			});
+	}, []);
 
-export default PatientDashboard
+	return (
+		<div className="flex gap-10 mx-auto justify-center">
+			{available ? <MyMedicalCard /> : <MedicalCard />}
+			<AppointmentCard />
+		</div>
+	);
+};
+
+export default PatientDashboard;

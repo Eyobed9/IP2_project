@@ -21,11 +21,11 @@
 
 ##### Medical card page 
 - `get the contents from the database by calling the API to checkCard.php if success return the medical card page if not show the medical card page with a form to add the medical card`
-- send the data from sendCardInfo.php to MyMedicalCard.tsx and show the medical card page with the data from the database
-- the data sent includes the following fields:
-  - Full name, department, phone, email, bloodtype, age, gender, profile picture
+- `send the data from sendCardInfo.php to MyMedicalCard.tsx and show the medical card page with the data from the database`
+- `the data sent includes the following fields:`
+  -` Full name, department, phone, email, bloodtype, age, gender, profile picture`
 
-* display the data in the medical card page
+* `display the data in the medical card page`
 
 
 
@@ -34,9 +34,12 @@
 * show 
 - in the backend check if the patient has a medical history or not if not show the medical card page if yes show the medical history page
 #### appointment page - 2nd
-- make it a component and use it in the patient dashboard
-- create a form to book an appointment with the doctor
-- in the backend check if the patient has an appointment or not if not show the appointment page if yes show the appointment history page
+- `make it a component and use it in the patient dashboard`
+- `create a form to book an appointment with the doctor`
+- `in the backend check if the patient has an appointment or not if not show the appointment page if yes show the appointment history page`
+* create an api to send the form and get results from the database
+* and when rescheduling the appointment use update in the backed
+
 
 
 #### medical history page - 1st
