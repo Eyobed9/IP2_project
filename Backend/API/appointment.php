@@ -16,15 +16,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $data = htmlspecialchars($data['data']);
         $physician = htmlspecialchars($data['physician']);
         $time = htmlspecialchars($data['time']);
-    
+
         # add the data to the database
         $email = "";
+        $staffID = "";
+        $patientID = "";
+
         if (isset($_SESSION['user'])) {
             $email = $_SESSION['user']['email'];
         }
 
-        $addStmt = $conn->prepare("UPDATE patient SET department=?, phone=?, DateofBirth=?, gender=?, bloodType=? WHERE email=?");
-        $addStmt->bind_param("ssssss", $department, $phone, $birthdate, $gender, $bloodType, $email);
+        # Get the staff id from the staff table
+        $checkStmt = $conn->prepare("SELECT StaffID From staff WHERE StaffName= ? ");
+        $checkStmt->bind_param("s", $data['physician']);
+        $checkStmt->execute();
+        $checkStmt->store_result();
+
+        if ($checkStmt->num_rows > 0) {
+            $checkStmt->bind_result($staffID);
+            $checkStmt->fetch();
+        }
+
+        # Get the patient id from the patient table
+        $getStmt = $conn->prepare("SELECT patientID FROM patient WHERE email = ?");
+        $getStmt->bind_param("s", $email);
+        $getStmt->execute();
+        $getStmt->store_result();
+
+
 
         if ($addStmt->execute()) {
             # send to the frontend

@@ -37,6 +37,7 @@
 - `make it a component and use it in the patient dashboard`
 - `create a form to book an appointment with the doctor`
 - `in the backend check if the patient has an appointment or not if not show the appointment page if yes show the appointment history page`
+- get the id of the patient and staff from the patient and staff table
 * create an api to send the form and get results from the database
 * and when rescheduling the appointment use update in the backed
 
