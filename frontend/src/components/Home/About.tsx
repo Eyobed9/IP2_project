@@ -18,10 +18,15 @@ const About = () => {
 						experienced professionals ensures that every patient
 						receives personalized care.
 					</p>
-					<p className="text-lg">
+					<p className="text-lg mb-6">
 						We strive to create a welcoming environment where your
 						health and well-being are our top priorities.
 					</p>
+					<button
+						className="px-8 py-3 rounded-full bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white font-semibold shadow-lg hover:from-blue-600 hover:to-blue-800 hover:scale-105 transition-all duration-300 border-2 border-white/40"
+					>
+						Learn More About Us
+					</button>
 				</div>
 			</div>
 		</section>
