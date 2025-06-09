@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { MedicalCard } from "@/components/Dashboard/MedicalCard";
-import MyMedicalCard from "@/components/Dashboard/MyMedicalCard";
-import AppointmentCard from "@/components/Dashboard/AppointmentCard";
+import { MedicalCard } from "@/components/PatientDashboard/MedicalCard";
+import MyMedicalCard from "@/components/PatientDashboard/MyMedicalCard";
+import AppointmentCard from "@/components/PatientDashboard/AppointmentCard";
 
 const PatientDashboard = () => {
 	const [available, setAvailable] = useState(false);
@@ -21,7 +21,7 @@ const PatientDashboard = () => {
 	}, []);
 
 	return (
-		<div className="flex gap-10 mx-auto justify-center">
+		<div className="flex flex-col md:flex-row md:gap-10 mx-auto justify-center">
 			{available ? <MyMedicalCard /> : <MedicalCard />}
 			<AppointmentCard />
 		</div>

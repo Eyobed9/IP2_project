@@ -3,7 +3,7 @@ import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 const Footer = () => {
 	return (
 		<>
-			<footer className="absolute w-screen bottom-0 bg-blue-500 text-white py-6 mt-5">
+			<footer className="absolute w-screen bottom-0 bg-blue-300 text-white py-6 mt-8">
 				<div className="container mx-auto text-center">
 					<p>
 						&copy; {new Date().getFullYear()} AASTU Clinic. All

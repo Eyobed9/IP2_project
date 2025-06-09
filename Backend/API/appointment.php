@@ -43,24 +43,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $getStmt->execute();
         $getStmt->store_result();
 
-        if($getStmt->num_rows > 0) {
+        if ($getStmt->num_rows > 0) {
             $getStmt->bind_result($patientID);
             $getStmt->fetch();
         }
+        $getStmt->close();
 
-        $insertStmt = $conn->prepare("INSERT INTO appointment (AppointmentDate, StaffID, patientID, AppointmentTime) VALUES (?, ?, ?, ?)");
-        $insertStmt->bind_param("siis", )
+        # If the patient exists in the appointment table update the field else insert
+        $getStmt = $conn->prepare("SELECT patientID FROM appointment WHERE patientID = ?");
+        $getStmt->bind_param("s", $patientID);
+        $getStmt->execute();
+        $getStmt->store_result();
 
-        if ($addStmt->execute()) {
+        $executed = true;
+        if ($getStmt->num_rows > 0) {
+            $updateStmt = $conn->prepare("UPDATE appointment SET AppointmentDate = ?, StaffID = ?, AppointmentTime = ? WHERE patientID = ?");
+            $updateStmt->bind_param("sisi", $date, $staffID, $time, $patientID);
+            $executed = $updateStmt->execute();
+        } else {
+            $insertStmt = $conn->prepare("INSERT INTO appointment (AppointmentDate, StaffID, patientID, AppointmentTime) VALUES (?, ?, ?, ?)");
+            $insertStmt->bind_param("siis", $date, $staffID, $patientID, $time);
+            $executed = $insertStmt->execute();
+        }
+
+        if ($executed) {
             # send to the frontend
             echo json_encode([
-                "message" => "medical card created successfully",
+                "message" => "appointment scheduled successfully",
+                "date" => $date,
+                "time" => $time,
+                "physician" => $physician,
                 "success" => true
             ]);
             exit;
         } else {
             echo json_encode([
-                "error" => "Can't add the data to the database",
+                "error" => "Can't schedule the appointment",
                 "success" => false
             ]);
             exit;

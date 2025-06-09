@@ -3,12 +3,6 @@ include_once("../config/headers.php");
 include_once("../config/database.php");
 include_once ("../helpers/validator.php");
 
-// Handle preflight requests
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(200);
-    exit;
-}
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $userData = json_decode($_POST['user_data'], true);
     $profilePic = $_FILES['profilePic'] ?? null;
