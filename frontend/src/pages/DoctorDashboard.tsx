@@ -4,7 +4,7 @@ import PatientLIst from "@/components/DoctorDashboard/PatientLIst";
 
 const DoctorDashboard = () => {
 	return (
-		<div className="flex flex-col items-center mb-16">
+		<div className="flex flex-col items-center h-200">
 			<div className="flex w-full max-w-7xl gap-8 mt-8 justify-center items-start">
 				<div className="flex flex-col gap-8 w-4/5">
 					<div className="flex justify-center gap-10 place-items-center">

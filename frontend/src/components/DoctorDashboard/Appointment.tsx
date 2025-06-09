@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 interface AppointmentData {
+	id: string;
 	patientName: string;
 	date: string;
 	time: string;
@@ -12,7 +13,7 @@ interface AppointmentCardProps {
 }
 
 const AppointmentCard = ({ appointment, onCancel }: AppointmentCardProps) => (
-	<div className="mb-5 bg-blue-50 flex flex-row w-fit md:w-fit justify-between items-center gap-6 p-6 border rounded-2xl shadow-md">
+	<div className="mb-5 bg-blue-50 flex flex-col mx-auto w-fit md:w-fit justify-between items-center gap-6 p-6 border rounded-2xl shadow-md">
 		<div>
 			<h5 className="text-lg text-blue-600 mb-1 font-semibold">
 				{appointment.patientName}
@@ -24,6 +25,12 @@ const AppointmentCard = ({ appointment, onCancel }: AppointmentCardProps) => (
 				Time: <span className="font-medium">{appointment.time}</span>
 			</p>
 		</div>
+		<button
+			className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+			onClick={() => onCancel(appointment.id)}
+		>
+			Cancel
+		</button>
 	</div>
 );
 
@@ -44,7 +51,8 @@ const Appointment = () => {
 			.then((data) => {
 				if (data.success) {
 					setAppointments(
-						data.content.map((item: any) => ({
+						data.content.map((item: AppointmentData, idx: number) => ({
+							id: item.id ?? String(idx), // fallback to idx if id is missing
 							patientName: item.patientName,
 							date: item.date,
 							time: item.time,
@@ -60,7 +68,7 @@ const Appointment = () => {
 	}, []);
 
 	const handleCancel = (id: string) => {
-		// Cancel functionality is not applicable as id is removed from AppointmentData
+		setAppointments((prev) => prev.filter((appt) => appt.id !== id));
 	};
 
 	return (
@@ -77,12 +85,12 @@ const Appointment = () => {
 					</p>
 				) : (
 					<div
-						className="flex flex-col items-center gap-4 overflow-y-auto"
+						className="flex flex-col items-center gap-4"
 						style={{ maxHeight: "500px" }}
 					>
-						{appointments.map((appointment, idx) => (
+						{appointments.map((appointment) => (
 							<AppointmentCard
-								key={idx}
+								key={appointment.id}
 								appointment={appointment}
 								onCancel={handleCancel}
 							/>

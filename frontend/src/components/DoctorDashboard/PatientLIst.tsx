@@ -14,7 +14,7 @@ const PatientLIst = () => {
 
 	useEffect(() => {
 		fetch(
-			"http://localhost:8080/ip2_project/aastu_clinic/backend/API/getPatientList.php",
+			"http://localhost:8080/ip2_project/aastu_clinic/backend/API/Doctor_dashboard/patients.php",
 			{
 				method: "GET",
 				credentials: "include",
@@ -34,7 +34,10 @@ const PatientLIst = () => {
 				<h2 className="text-2xl font-bold text-blue-600 mb-6 text-center">
 					Patient List
 				</h2>
-				<div className="overflow-x-auto rounded-2xl">
+				<div
+					className="overflow-x-auto rounded-2xl"
+					style={{ maxHeight: "500px", overflowY: "auto" }}
+				>
 					<table className="min-w-full divide-y divide-gray-200 rounded-2xl">
 						<thead className="bg-blue-200">
 							<tr>
