@@ -13,10 +13,10 @@ const DoctorDashboard = () => {
 					</div>
 					<PatientLIst />
 				</div>
-				<div className="w-1/5 flex justify-end">
+				<div className="w-1/5 flex mt-0">
 					<div
-						className="w-full"
-						style={{ maxHeight: "600px", overflowY: "auto" }}
+						className="w-full h-full"
+						style={{ overflowY: "auto" }}
 					>
 						<Appointment />
 					</div>

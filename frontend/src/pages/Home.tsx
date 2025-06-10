@@ -34,9 +34,9 @@ const Home = () => {
         </div>
         <div className="flex-1 flex justify-center">
           <img
-            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
+            src="https://rosemedicalbuildings.com/wp-content/uploads/4.-Premiere-Ortho-Clinic.jpg"
             alt="Hospital"
-            className="rounded-2xl shadow-2xl w-full max-w-md object-cover"
+            className="rounded-2xl shadow-2xl w-full max-w-md object-contain"
           />
         </div>
       </main>

@@ -13,7 +13,7 @@ interface AppointmentCardProps {
 }
 
 const AppointmentCard = ({ appointment, onCancel }: AppointmentCardProps) => (
-	<div className="mb-5 bg-blue-50 flex flex-col mx-auto w-fit md:w-fit justify-between items-center gap-6 p-6 border rounded-2xl shadow-md">
+	<div className="mb-5 bg-blue-50 flex flex-col mx-auto w-full max-w-xs justify-between items-center gap-6 p-6 border rounded-2xl shadow-md">
 		<div>
 			<h5 className="text-lg text-blue-600 mb-1 font-semibold">
 				{appointment.patientName}
@@ -51,12 +51,14 @@ const Appointment = () => {
 			.then((data) => {
 				if (data.success) {
 					setAppointments(
-						data.content.map((item: AppointmentData, idx: number) => ({
-							id: item.id ?? String(idx), // fallback to idx if id is missing
-							patientName: item.patientName,
-							date: item.date,
-							time: item.time,
-						}))
+						data.content.map(
+							(item: AppointmentData, idx: number) => ({
+								id: item.id ?? String(idx), // fallback to idx if id is missing
+								patientName: item.patientName,
+								date: item.date,
+								time: item.time,
+							})
+						)
 					);
 				}
 				setLoading(false);
@@ -72,8 +74,8 @@ const Appointment = () => {
 	};
 
 	return (
-		<div className="flex flex-col items-center justify-center mb-16">
-			<div className="w-full max-w-xs bg-white rounded-2xl p-8 mt-10">
+		<div className="flex flex-col items-start h-[100vh]">
+			<div className="w-full max-w-xs bg-white rounded-2xl">
 				<h2 className="text-2xl font-bold text-blue-600 mb-6 text-center">
 					Appointments
 				</h2>

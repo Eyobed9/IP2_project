@@ -42,10 +42,10 @@ const PatientLIst = () => {
 						<thead className="bg-blue-200">
 							<tr>
 								<th className="px-4 py-2 text-left text-md font-medium text-gray-500 uppercase">
-									Name
+									
 								</th>
 								<th className="px-4 py-2 text-left text-md font-medium text-gray-500 uppercase">
-									ID
+									Name
 								</th>
 								<th className="px-4 py-2 text-left text-md font-medium text-gray-500 uppercase">
 									Gender
